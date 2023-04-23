@@ -35,26 +35,19 @@ class SumOfTwoArrays {
 
         int i = arr1.length - 1, j = arr2.length - 1, k = ans.length - 1, carry = 0;
 
-        while (i >= 0 && j >= 0) {
+        while (i >= 0 || j >= 0) {
 
-            int sum = arr1[i--] + arr2[j--] + carry;
+            int sum = 0;
+            if (i >= 0) {
+                sum += arr1[i--];
+            }
+            if (j >= 0) {
+                sum += arr2[j--];
+            }
+            sum += carry;
             ans[k--] = sum % 10;
             carry = sum / 10;
 
-        }
-
-        if (arr1.length > arr2.length) {
-            while (i >= 0) {
-                int sum = arr1[i--] + carry;
-                ans[k--] = sum % 10;
-                carry = sum / 10;
-            }
-        } else if (arr2.length > arr1.length) {
-            while (j >= 0) {
-                int sum = arr2[j--] + carry;
-                ans[k--] = sum % 10;
-                carry = sum / 10;
-            }
         }
 
         ans[k--] = carry;
