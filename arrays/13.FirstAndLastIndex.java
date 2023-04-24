@@ -65,7 +65,8 @@ class FirstAndLastIndex {
         int[] ans = firstAndLastIndex(arr, val);
 
         System.out
-                .println("The first index is : " + ans[0] + " the last index is : " + ans[1] + " of the element" + val);
+                .println("The first index is : " + ans[0] + " the last index is : " + ans[1] + " of the element: "
+                        + val);
     }
 
 }
