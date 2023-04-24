@@ -25,19 +25,33 @@ class SearchInRange {
         return arr;
     }
 
-    public static boolean searchInRange(int[] arr, int value, int start, int end) {
+    public static Object[] searchInRange(int[] arr, int value, int start, int end) {
+
+        Object[] ans = new Object[2];
+        boolean result = false;
+        int index = -1;
 
         if (start > arr.length && end < 0) {
-            return false;
+            result = false;
         }
 
         for (int i = start; i <= end; i++) {
             if (arr[i] == value) {
-                return true;
+                result = true;
+                index = i;
+                break;
             }
         }
 
-        return false;
+        if (!result) {
+            result = false;
+            index = end;
+        }
+
+        ans[0] = result;
+        ans[1] = index;
+
+        return ans;
     }
 
     public static void main(String[] args) {
@@ -58,12 +72,16 @@ class SearchInRange {
         System.out.println("Original Array: ");
         display(arr);
 
-        boolean ans = searchInRange(arr, value, start, end);
+        Object[] ans = searchInRange(arr, value, start, end);
 
-        if (ans) {
-            System.out.println("Element is present in the desired range!");
-        } else {
+        if ((boolean) ans[0]) {
+            System.out.println(
+                    "Element is present in the desired range!\nThe index in which the element is present is at: "
+                            + (int) ans[1]);
+        } else if ((int) ans[1] != -1) {
             System.out.println("Element is not present in the desired range!");
+        } else {
+            System.out.println("Please enter the desired range within the size of the array!");
         }
     }
 
